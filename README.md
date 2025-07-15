@@ -1,1 +1,2 @@
-# praticando
+# Praticando...
+Repositório criado com a finalidade de exercitar o desenvolvimento de software 💯
