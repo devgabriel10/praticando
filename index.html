@@ -10,12 +10,21 @@
             text-align: center;
         }
 
+        ul {
+            list-style-type: none;
+        }
+
+        .podium {
+            text-align: center;
+        }
+
         .first {
             background-color: rgb(235, 200, 84);
             font-size: 20px;
             height: 50px;
             text-align: center;
             width: 200px;
+            margin-left: 550px;
         }
 
         .second {
@@ -24,6 +33,7 @@
             height: 50px;
             text-align: center;
             width: 300px;
+            display: inline-block;
         }
 
         .third {
@@ -32,6 +42,15 @@
             height: 50px;
             text-align: center;
             width: 300px;
+            display: inline-block;
+        }
+
+        .premiacao {
+            text-align: center;
+        }
+
+        .premiacao li {
+            display: inline;
         }
     </style>
 </head>
@@ -40,7 +59,7 @@
     <header>
         <h1>Hackathon Results</h1>
     </header>
-    <section>
+    <section class="podium">
         <ul>
             <li class="first">1º - Equipe 1</li>
             <li class="second">2º - Equipe 2</li>
