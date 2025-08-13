@@ -1,19 +1,12 @@
-const turmas = [
-  {
-    nome: "Turma A",
-    alunos: [
-      { nome: "João", idade: 17 },
-      { nome: "Maria", idade: 16 }
-    ]
-  },
-  {
-    nome: "Turma B",
-    alunos: [
-      { nome: "Lucas", idade: 18 },
-      { nome: "Fernanda", idade: 17 }
-    ]
-  }
-];
+const adicionaPropriedade = (objeto, chave, valor) => {
+    objeto[chave] = valor;
+    return console.log(objeto);
+}
 
-// Acessar o nome da primeira aluna da Turma B:
-console.log(turmas[1].alunos[0].nome);  // "Lucas"
+const objetoExemplo = {
+    name: 'Gabriel',
+    age: 22,
+    email: 'gabriel@gmail.com'
+};
+
+adicionaPropriedade(objetoExemplo, 'address', 'santinha');
