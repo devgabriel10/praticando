@@ -1,11 +1,50 @@
-filmes = ["Pulp Fiction", "Interestellar", "O Protetor"]
+import numpy as np
 
-print("Classificação de filmes:")
+# Dados dos participantes
+participantes = [
+    {
+        "nome": "Alice",
+        "localizacao": "EUA",
+        "afiliacao": "Universidade A",
+        "interesses": ["Física", "Astronomia"]
+    },
+    {
+        "nome": "Bob",
+        "localizacao": "Brasil",
+        "afiliacao": "Instituto B",
+        "interesses": ["Biologia", "Astronomia"]
+    },
+    {
+        "nome": "Charlie",
+        "localizacao": "Índia",
+        "afiliacao": "Instituto C",
+        "interesses": ["Química", "Engenharia"]
+    }
+]
 
-for filme in filmes:
-    nota = int(input(f"De 1 a 5, como você classifica {filme}: " ))
-    while nota < 1 or nota > 5:
-        print("Classificação incorreta")
-        nota = int(input(f"Como você classifica {filme}: " ))
+# Usando sets para identificar diferentes regiões dos participantes
+regioes = set(participante["localizacao"] for participante in participantes)
 
-print("Obrigado por classificar os filmes!")
+# Usando um dicionário para categorizar afiliações
+afiliacoes = {}
+for participante in participantes:
+    afiliacao = participante["afiliacao"]
+    if afiliacao not in afiliacoes:
+        afiliacoes[afiliacao] = []
+    afiliacoes[afiliacao].append(participante["nome"])
+
+# Usando NumPy para analisar áreas de interesse
+areas_de_interesse = np.array(
+    [interesse for participante in participantes for interesse in participante["interesses"]]
+)
+
+interesses_unicos, contagem = np.unique(areas_de_interesse, return_counts=True)
+area_mais_popular = interesses_unicos[np.argmax(contagem)]
+
+print("Regiões dos participantes:", regioes)
+
+print("Afiliações dos participantes:")
+for afiliacao, nomes in afiliacoes.items():
+    print(f"{afiliacao}: {', '.join(nomes)}")
+
+print("Área de interesse mais popular:", area_mais_popular)
