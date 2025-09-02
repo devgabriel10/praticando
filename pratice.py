@@ -1,50 +1,27 @@
-import numpy as np
+import sqlite3
 
-# Dados dos participantes
-participantes = [
-    {
-        "nome": "Alice",
-        "localizacao": "EUA",
-        "afiliacao": "Universidade A",
-        "interesses": ["Física", "Astronomia"]
-    },
-    {
-        "nome": "Bob",
-        "localizacao": "Brasil",
-        "afiliacao": "Instituto B",
-        "interesses": ["Biologia", "Astronomia"]
-    },
-    {
-        "nome": "Charlie",
-        "localizacao": "Índia",
-        "afiliacao": "Instituto C",
-        "interesses": ["Química", "Engenharia"]
-    }
-]
+conn = sqlite3.connect('exemplo.db')
 
-# Usando sets para identificar diferentes regiões dos participantes
-regioes = set(participante["localizacao"] for participante in participantes)
+cursor = conn.cursor()
 
-# Usando um dicionário para categorizar afiliações
-afiliacoes = {}
-for participante in participantes:
-    afiliacao = participante["afiliacao"]
-    if afiliacao not in afiliacoes:
-        afiliacoes[afiliacao] = []
-    afiliacoes[afiliacao].append(participante["nome"])
+create_table = """
 
-# Usando NumPy para analisar áreas de interesse
-areas_de_interesse = np.array(
-    [interesse for participante in participantes for interesse in participante["interesses"]]
-)
+CREATE TABLE IF NOT EXISTS Produtos (
 
-interesses_unicos, contagem = np.unique(areas_de_interesse, return_counts=True)
-area_mais_popular = interesses_unicos[np.argmax(contagem)]
+    id INTEGER PRIMARY KEY,
 
-print("Regiões dos participantes:", regioes)
+    nome TEXT NOT NULL,
 
-print("Afiliações dos participantes:")
-for afiliacao, nomes in afiliacoes.items():
-    print(f"{afiliacao}: {', '.join(nomes)}")
+    preco REAL NOT NULL,
 
-print("Área de interesse mais popular:", area_mais_popular)
+    estoque INTEGER
+
+);
+
+"""
+
+cursor.execute(create_table)
+
+conn.commit()
+
+conn.close()
